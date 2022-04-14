@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
@@ -25,27 +26,7 @@ class UserController extends Controller
         return $this->success([
             'token' => $user->createToken('tokens')->plainTextToken
         ]);
-    }
-
-
-
-
-
-    // $attr = $request->validate([
-    //     'name' => 'required|string|max:255',
-    //     'email' => 'required|string|email|unique:users,email',
-    //     'password' => 'required|string|min:6|confirmed'
-    // ]);
-
-    // $user = User::create([
-    //     'name' => $attr['name'],
-    //     'password' => bcrypt($attr['password']),
-    //     'email' => $attr['email']
-    // ]);
-
-    // return $this->success([
-    //     'token' => $user->createToken('tokens')->plainTextToken
-    // ]);
+       }
     }
 
     public function login(LoginRequest $request){

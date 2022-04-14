@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,10 +31,10 @@ Route::post('/signup',[UserController::class,'signup']);
 Route::post('/login',[UserController::class,'login']);
 
 //route to get the user posts
-Route::get('/user-posts', [PostController::class ,'userPosts'])->middleware('auth:sanctum');
+Route::get('/user-posts/{user_id}', [PostController::class ,'userPosts'])->middleware('auth:sanctum');
 
 //route to get all posts
-Route::get('/posts',[PostController::class,'allPosts'])->middleware('auth:sanctum');
+Route::get('/posts',[PostController::class,'allPosts'])->middleware('auth:sanctum');//add middleware admin;
 
 //route to get update post
 Route::get('/update-posts/{post}', [PostController::class ,'update'])->middleware('auth:sanctum');

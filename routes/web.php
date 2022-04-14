@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,27 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//route to return posts blade
+Route::get('posts',[PostController::class,'index'])->middleware('auth')->name('posts.index');
+
+//route to create post
+Route::post('store',[PostController::class,'store'])->middleware('auth')->name('posts.store');
+
+//route to get post blade
+Route::get('create',[PostController::class,'create'])->middleware('auth')->name('posts.create');
+
+//route to get edit blade
+Route::get('edit/{postId}',[PostController::class,'edit'])->middleware('auth')->name('posts.edit');
+
+//route to update post on database
+Route::post('update/{postId}',[PostController::class,'update'])->middleware('auth')->name('posts.update');
+
+//route to delete post
+Route::get('delete/{postId}',[PostController::class, 'destroy'])->middleware('auth')->name('posts.destroy');
+
+
