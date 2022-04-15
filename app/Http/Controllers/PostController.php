@@ -15,6 +15,11 @@ class PostController extends Controller
            $posts= PostResource::collection(Post::where('user_id',auth()->user()->id)->get());
 
            return view('posts.index',compact('posts'));
+        }else{
+
+            $allPosts=PostResource::collection(Post::all());
+            return view('posts.indexAdmin',compact('allPosts'));
+
         }
     }
 

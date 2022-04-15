@@ -34,13 +34,23 @@ Route::post('/login',[UserController::class,'login']);
 Route::get('/user-posts/{user_id}', [PostController::class ,'userPosts'])->middleware('auth:sanctum');
 
 //route to get all posts
-Route::get('/posts',[PostController::class,'allPosts'])->middleware('auth:sanctum');//add middleware admin;
+Route::get('/posts',[PostController::class,'allPosts'])->middleware(['auth:sanctum','isAdmin']);
 
 //route to get update post
 Route::get('/update-posts/{post}', [PostController::class ,'update'])->middleware('auth:sanctum');
 
 //route to add new post
 Route::post('/Add-posts', [PostController::class ,'store'])->middleware('auth:sanctum');
+
+
+
+
+
+
+
+
+
+
 
 
 // Route::post('/sanctum/token', function (Request $request) {
