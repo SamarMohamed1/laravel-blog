@@ -2,10 +2,8 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-    <a class="btn btn-info" href="{{route('posts.create')}}">create post</a>
 
-    </div>
+
     <div class="row">
     <table class="table table-striped">
         <thead>
@@ -24,13 +22,17 @@
                 <td>{{ isset($post->user) ? $post->user->name : 'Not Found' }}</td>
                 <td>
                     <a class="btn btn-success" href="{{route('posts.edit',$post->id)}}">update</a>
-                    <a class="btn btn-danger" href="{{route('posts.destroy',$post->id)}}">delete</a>
+                    <a class="btn btn-danger" href="{{route('posts.destroy',$post->id)}}" onclick="return confirm('are you sure!!')">delete</a>
 
                 </td>
             </tr>
             @endforeach
         </tbody>
         </table>
+    </div>
+
+    <div class="row d-flex w-25 my-5 text-center">
+    <a class="btn btn-info p-2 fw-bold  justify-content-center  py-3"href="{{route('posts.create')}}">create ew post</a>
     </div>
 
 </div>
