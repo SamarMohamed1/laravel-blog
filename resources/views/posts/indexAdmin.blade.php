@@ -21,8 +21,11 @@
                 <td>{{$post->description}}</td>
                 <td>{{ isset($post->user) ? $post->user->name : 'Not Found' }}</td>
                 <td>
-                    <a class="btn btn-success" href="{{route('posts.edit',$post->id)}}">update</a>
+
                     <a class="btn btn-danger" href="{{route('posts.destroy',$post->id)}}" onclick="return confirm('are you sure!!')">delete</a>
+                    @if($post->user->id == auth()->user()->id)
+                    <a class="btn btn-success" href="{{route('posts.edit',$post->id)}}">update</a>
+                    @endif
 
                 </td>
             </tr>
