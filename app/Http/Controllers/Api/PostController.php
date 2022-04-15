@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
+use App\Http\Resources\AuthorPostsResource;
 use App\Http\Resources\PostResource;
 use App\Models\Post;
 use App\Models\User;
@@ -13,7 +14,7 @@ class PostController extends Controller
 {
 
 
-   public function allPosts(PostRequest $request){
+   public function allPosts(){
         $allpost=Post::all();
         return PostResource::collection($allpost);
     }
@@ -50,5 +51,18 @@ class PostController extends Controller
         ]);
 
         return new PostResource($post);
+    }
+
+
+    public function getPosts(Request $request){
+        // dd($request->user()->id);
+
+        if($request->user()->role == 'admin'){
+            $allposts=Post::all();
+            return PostResource::collection($allposts);
+        }else{
+            $posts=Post::where('user_id',$request->user()->id)->get();
+            return AuthorPostsResource::collection($posts);
+        }
     }
 }

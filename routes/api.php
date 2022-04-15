@@ -30,6 +30,16 @@ Route::post('/signup',[UserController::class,'signup']);
 //route to login
 Route::post('/login',[UserController::class,'login']);
 
+
+
+
+
+//route to check the role from token if author display only his posts if admin display allposts
+Route::get('getPosts',[PostController::class,'getPosts'])->middleware('auth:sanctum');
+
+
+
+
 //route to get the user posts
 Route::get('/user-posts/{user_id}', [PostController::class ,'userPosts'])->middleware('auth:sanctum');
 
@@ -41,6 +51,9 @@ Route::get('/update-posts/{post}', [PostController::class ,'update'])->middlewar
 
 //route to add new post
 Route::post('/Add-posts', [PostController::class ,'store'])->middleware('auth:sanctum');
+
+
+
 
 
 
