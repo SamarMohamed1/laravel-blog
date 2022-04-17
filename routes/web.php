@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -39,5 +41,16 @@ Route::post('update/{postId}',[PostController::class,'update'])->middleware('aut
 
 //route to delete post
 Route::get('delete/{postId}',[PostController::class, 'destroy'])->middleware('auth')->name('posts.destroy');
+
+//route to login with github
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('github')->redirect();
+});
+
+Route::get('/auth/callback', function () {
+    $user = Socialite::driver('github')->user();
+
+    // $user->token
+});
 
 

@@ -46,8 +46,14 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
+
+                                    <a class="btn btn-dark" href="{{ url('auth/github') }}">
+                                    Login with GitHub
+                                    </a>
                             </div>
                         </div>
+
+
                     </form>
                 </div>
             </div>
